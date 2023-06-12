@@ -143,10 +143,12 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
           </div>
         </div>
         <div className="buttons">
-          <button className="secondary" onClick={onClose}>
+          <button className="secondary" onClick={onClose} type="button">
             Cancel
           </button>
-          <button onClick={onSubmit}>Add Task</button>
+          <button onClick={onSubmit} type="submit">
+            Add Task
+          </button>
         </div>
       </form>
     </div>
