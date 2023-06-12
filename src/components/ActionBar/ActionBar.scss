@@ -1,0 +1,59 @@
+@use 'styles/mixins';
+@use 'styles/theme';
+
+.action-bar {
+  height: 64px;
+  padding: 1rem 1.5rem;
+  @include mixins.flex(0, row);
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid theme.$grey200;
+
+  .action-bar-left {
+    @include mixins.flex(1rem, row);
+    align-items: center;
+    .left-arrow,
+    .team {
+      @include mixins.iconColor(theme.$text);
+    }
+
+    .calendar {
+      @include mixins.iconColor(theme.$orange);
+    }
+
+    .complete-sprint {
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem 0.75rem;
+      background-color: theme.$lightBlue;
+      border-radius: 4px;
+      @include mixins.font(0.8125rem, 500, theme.$blue);
+    }
+  }
+
+  .sprint-details {
+    @include mixins.flex(0.5rem, row);
+    align-items: center;
+    @include mixins.font(0.8125rem, 500, theme.$darkBlue);
+
+    .line {
+      height: unset;
+      align-self: stretch;
+    }
+    .icon-wrapper {
+      @include mixins.iconWrapper(transparent);
+    }
+  }
+
+  .action-bar-right {
+    @include mixins.flex(0.5rem, row);
+    .icon-wrapper {
+      @include mixins.iconWrapper(theme.$grey07);
+      @include mixins.iconColor(theme.$text);
+      &.selected {
+        @include mixins.iconColor(theme.$white);
+        @include mixins.iconWrapper(theme.$blue);
+      }
+    }
+  }
+}

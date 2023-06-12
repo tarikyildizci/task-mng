@@ -1,0 +1,47 @@
+@use 'styles/theme';
+
+@mixin flex($gap: 1rem, $direction: column) {
+  display: flex;
+  gap: $gap;
+  flex-direction: $direction;
+}
+
+@mixin font($fontSize: 1rem, $fontWeight: 400, $color: theme.$text) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  color: $color;
+}
+
+@mixin iconColor($color: theme.$white) {
+  & path {
+    stroke: $color;
+  }
+}
+
+@mixin iconWrapper($color: theme.$grey, $padding: 0.25rem, $borderRadius: 4px) {
+  background-color: $color;
+  padding: $padding;
+  border-radius: $borderRadius;
+}
+@mixin input() {
+  transition: outline-color 0.3s;
+  height: 100%;
+  width: 12.5rem;
+  border-radius: 4px;
+  background-color: theme.$grey07;
+  border: none;
+  outline: 1px solid transparent;
+
+  font-size: 0.75rem;
+  &.with-icon {
+    padding-left: 1.75rem;
+  }
+
+  &::placeholder {
+    color: theme.$grey;
+  }
+  &:focus {
+    transition: outline-color 0.3s;
+    outline-color: theme.$blue;
+  }
+}

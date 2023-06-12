@@ -1,0 +1,92 @@
+@use 'styles/mixins';
+@use 'styles/theme';
+
+.task {
+  @include mixins.flex(0.75rem);
+  @include mixins.font(0.8125rem, 500, theme.$text);
+  transition: box-shadow background-color 0.3s;
+
+  padding: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid theme.$darkBlue05;
+  background-color: theme.$white;
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    box-shadow: 0px 0px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.dragging {
+  background-color: theme.$blue;
+  & p,
+  * * {
+    color: theme.$white;
+  }
+}
+
+.task-type {
+  @include mixins.flex(0.25rem, row);
+  @include mixins.font(0.8125rem, 300);
+  @include mixins.iconColor();
+
+  align-items: center;
+  line-height: 1.75rem;
+
+  .task-icon-wrapper {
+    padding: 3px;
+    border-radius: 4px;
+    height: fit-content;
+  }
+
+  .type-task {
+    background-color: theme.$yellow;
+  }
+  .type-epic {
+    background-color: theme.$orange;
+  }
+  .type-sprint {
+    background-color: theme.$text;
+  }
+  .type-team {
+    background-color: theme.$blue;
+  }
+}
+
+.task-bottom {
+  @include mixins.flex(0, row);
+  justify-content: space-between;
+}
+
+.task-bottom-right {
+  @include mixins.flex(0.75rem, row);
+  align-items: center;
+}
+
+.story-points {
+  border: 1px solid theme.$lightBlue;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  line-height: 1rem;
+  color: theme.$darkBlue;
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.squareLike {
+  border-radius: 25%;
+}
+
+.name {
+  @include mixins.flex();
+  justify-content: center;
+  align-items: center;
+  color: theme.$white;
+  background-color: theme.$yellow;
+  height: 1.5rem;
+  width: 1.5rem;
+}

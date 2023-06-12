@@ -1,0 +1,121 @@
+@use 'styles/mixins';
+@use 'styles/theme';
+
+.column-wrapper {
+  @include mixins.flex(0);
+  background-color: theme.$white;
+  height: 100%;
+  border: 1px solid theme.$darkBlue07;
+  border-radius: 8px;
+  position: relative;
+  overflow: auto;
+  min-width: 290px;
+}
+
+.column-header {
+  @include mixins.font(1rem, 500, theme.$darkBlue);
+  @include mixins.flex(0, row);
+  justify-content: space-between;
+  margin: 1.5rem 1.5rem 0 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid theme.$grey100;
+
+  .add-button {
+    @include mixins.iconColor(theme.$blue);
+    @include mixins.iconWrapper(theme.$white);
+    border: 1px solid theme.$blue;
+
+    transition: all 0.3s;
+
+    &:hover {
+      @include mixins.iconWrapper(theme.$lightBlue);
+    }
+  }
+}
+
+.label {
+  @include mixins.font(0.8125rem, 400, theme.$blue);
+  @include mixins.flex();
+  line-height: 1rem;
+  align-items: center;
+  padding: 0.25rem;
+  background-color: theme.$lightBlue;
+  border-radius: 4px;
+  min-width: 1.5rem;
+}
+
+.column-title-area {
+  @include mixins.flex(0.5rem, row);
+  align-items: center;
+}
+
+.column {
+  overflow: auto;
+  padding: 1.5rem;
+  padding-top: 1rem;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  transition: all 0.3s;
+  &.dragging-over {
+    background-color: theme.$lightBlue;
+  }
+}
+
+.new-task-wrapper {
+  padding: 1.5rem;
+  padding-bottom: 0;
+  .new-task {
+    @include mixins.flex(0.75rem);
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid theme.$blue;
+    border-radius: 4px;
+
+    .bottom-section {
+      @include mixins.flex(0.5rem, row);
+    }
+
+    input[type='text'],
+    input[type='number'] {
+      @include mixins.input();
+      width: 100%;
+      padding: 0.5rem;
+    }
+
+    select {
+      @include mixins.input();
+      width: 100%;
+      padding: 0.5rem;
+    }
+
+    .priority {
+      @include mixins.flex(0, row);
+      @include mixins.font(0.8125rem, 500, theme.$text);
+    }
+
+    .radio-group {
+      @include mixins.flex(0, row);
+      justify-content: space-around;
+      flex-grow: 1;
+    }
+
+    .buttons {
+      @include mixins.flex(0.5rem, row);
+      justify-content: end;
+      button {
+        @include mixins.font(0.8125rem, 500, theme.$blue);
+        padding: 0.25rem;
+        cursor: pointer;
+        border: none;
+        background-color: theme.$lightBlue;
+        border-radius: 4px;
+
+        &.secondary {
+          background-color: theme.$grey100;
+          color: theme.$text;
+        }
+      }
+    }
+  }
+}

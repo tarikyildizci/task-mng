@@ -1,0 +1,151 @@
+@use 'styles/mixins';
+@use 'styles/theme';
+
+.layout {
+  height: 100vh;
+  max-height: 100vh;
+  display: grid;
+  grid-template-rows: theme.$topbarHeight auto;
+  grid-template-columns: theme.$sidebarWidth 1fr;
+  grid-template-areas:
+    'topbar topbar'
+    'sidebar content';
+}
+
+.topbar {
+  grid-area: topbar;
+  background-color: theme.$white;
+  border-bottom: 1px solid theme.$grey100;
+  // defined in pixels bc logo height doesn't depend on rem value
+  padding: 12px 24px 12px 14px;
+  @include mixins.flex(1.75rem, row);
+
+  .topbar-actions {
+    @include mixins.flex(0, row);
+    width: 100%;
+    justify-content: space-between;
+    & > .icon-wrapper {
+      @include mixins.iconWrapper(transparent, 0.4375rem);
+      @include mixins.iconColor(theme.$blue);
+      border: 1px solid theme.$blue;
+    }
+  }
+
+  .logo-wrapper {
+    @include mixins.flex(1.0625rem, row);
+  }
+
+  .search {
+    position: relative;
+    @include mixins.flex(0.5rem, row);
+
+    .icon-wrapper {
+      @include mixins.iconWrapper(theme.$grey07);
+      @include mixins.iconColor(theme.$grey);
+    }
+
+    input {
+      @include mixins.input();
+    }
+
+    .icon {
+      @include mixins.iconColor(theme.$grey);
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: theme.$white;
+  border-right: 1px solid theme.$grey100;
+  padding: 1rem 0.75rem;
+  @include mixins.flex(0);
+  justify-content: space-between;
+}
+
+.sidebar-group {
+  @include mixins.flex(0.5rem);
+  * > p {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    letter-spacing: 0.02em;
+    font-size: 0.8125rem;
+  }
+}
+
+.sidebar-divider {
+  height: 1px;
+  width: 100%;
+  background-color: theme.$grey100;
+}
+
+.sidebar-item {
+  @include mixins.flex(0, row);
+  text-decoration: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-radius: 4px;
+
+  color: theme.$text;
+  @include mixins.iconColor(theme.$text);
+  &.current {
+    color: theme.$white;
+    @include mixins.iconColor(theme.$white);
+    background-color: theme.$blue;
+  }
+
+  &:hover:not(.current) {
+    background-color: theme.$lightBlue;
+  }
+
+  .sidebar-content {
+    @include mixins.flex(0.5rem, row);
+    align-items: center;
+  }
+
+  .dot {
+    height: 5px;
+    width: 5px;
+    border-radius: 1.5px;
+    background-color: theme.$white;
+  }
+}
+
+.sidebar-button {
+  @include mixins.flex(0.5rem, row);
+  align-items: center;
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+  text-align: start;
+  color: theme.$text;
+  cursor: pointer;
+  * {
+    flex-shrink: 0;
+  }
+
+  &.current {
+    color: theme.$white;
+    background-color: theme.$blue;
+  }
+
+  &:hover:not(.current) {
+    background-color: theme.$lightBlue;
+  }
+}
+
+.content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  background-color: theme.$grey300;
+}
