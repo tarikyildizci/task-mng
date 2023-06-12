@@ -10,8 +10,6 @@ export const Board: React.FC = () => {
   const columns = useSelector((state: RootState) => state.board.columns)
   const dispatch = useDispatch()
 
-  console.log({ columns })
-
   const columnsArray = Object.values(columns)
 
   const onDragEnd: OnDragEndResponder = (result) => {

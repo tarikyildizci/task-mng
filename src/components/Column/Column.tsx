@@ -39,7 +39,6 @@ export const Column: React.FC<ColumnProps> = ({ columnId }) => {
   const tasks = column.taskIds.map((taskId) => allTasks[taskId])
 
   const [isAdding, setIsAdding] = useState(false)
-  console.log({ taskIds: column.taskIds })
 
   return (
     <div className="column-wrapper">
