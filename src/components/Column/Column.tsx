@@ -5,12 +5,29 @@ import './Column.scss'
 import { Icon } from 'components/Icon/Icon'
 import { ReactComponent as Test } from 'icons/test.svg'
 import { ReactComponent as Plus } from 'icons/plus.svg'
+import { ReactComponent as Backlog } from 'icons/backlog.svg'
+import { ReactComponent as Todo } from 'icons/todo.svg'
+import { ReactComponent as InProgress } from 'icons/in_progress.svg'
 import { NewTask } from './NewTask'
 import { useSelector } from 'react-redux'
 import { RootState } from 'store/store'
+import { Column as ColumnType } from 'types/types'
 
 export type ColumnProps = {
   columnId: string
+}
+
+const getIcon = (icon: ColumnType['icon']) => {
+  switch (icon) {
+    case 'backlog':
+      return Backlog
+    case 'todo':
+      return Todo
+    case 'in_progress':
+      return InProgress
+    case 'test':
+      return Test
+  }
 }
 
 export const Column: React.FC<ColumnProps> = ({ columnId }) => {
@@ -28,7 +45,7 @@ export const Column: React.FC<ColumnProps> = ({ columnId }) => {
     <div className="column-wrapper">
       <div className="column-header">
         <div className="column-title-area">
-          <Icon Icon={Test} />
+          <Icon Icon={getIcon(column.icon)} />
           <div>{column.title}</div>
           <Icon
             Icon={Plus}

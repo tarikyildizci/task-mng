@@ -52,16 +52,18 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
   }
 
   const onSubmit = () => {
-    dispatch(
-      addTask({
-        columnId,
-        description,
-        priority,
-        type,
-        storyPoints,
-      })
-    )
-    onClose()
+    if (description != '') {
+      dispatch(
+        addTask({
+          columnId,
+          description,
+          priority,
+          type,
+          storyPoints,
+        })
+      )
+      onClose()
+    }
   }
 
   useEffect(() => {
@@ -84,7 +86,14 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
 
   return (
     <div className="new-task-wrapper">
-      <form ref={addRef} className="new-task">
+      <form
+        ref={addRef}
+        className="new-task"
+        onSubmit={(e) => {
+          e.preventDefault()
+          onSubmit()
+        }}
+      >
         <input
           type="text"
           name="task-description"
@@ -102,6 +111,7 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
           placeholder="Story Points"
           value={storyPoints}
           onChange={handleStoryPointsChange}
+          min={0}
         />
         <div className="priority">
           <p>Priority: </p>
@@ -112,6 +122,7 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
               value={1}
               checked={priority === 1}
               onChange={handlePriorityChange}
+              className="low"
             />
             <input
               type="radio"
@@ -119,6 +130,7 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
               value={2}
               checked={priority === 2}
               onChange={handlePriorityChange}
+              className="medium"
             />
             <input
               type="radio"
@@ -126,6 +138,7 @@ export const NewTask: React.FC<NewTaskProps> = ({ onClose, columnId }) => {
               value={3}
               checked={priority === 3}
               onChange={handlePriorityChange}
+              className="high"
             />
           </div>
         </div>

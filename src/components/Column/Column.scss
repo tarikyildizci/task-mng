@@ -98,6 +98,15 @@
       @include mixins.flex(0, row);
       justify-content: space-around;
       flex-grow: 1;
+      .low {
+        filter: hue-rotate(270deg);
+      }
+      .medium {
+        filter: hue-rotate(180deg);
+      }
+      .high {
+        filter: hue-rotate(125deg);
+      }
     }
 
     .buttons {
